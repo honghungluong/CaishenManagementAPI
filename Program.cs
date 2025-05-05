@@ -33,23 +33,26 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    try
-    {
-        var db = scope.ServiceProvider.GetRequiredService<CaishenMngtDbContext>();
-        db.Database.Migrate();
-        Console.WriteLine("Database migrated successfully.");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Error during database migration:");
-        Console.WriteLine(ex.Message);
-        // log detail
-        Console.WriteLine(ex.StackTrace);
-    }
-}
-
+//using (var scope = app.Services.CreateScope())
+//{
+//    try
+//    {
+//        var db = scope.ServiceProvider.GetRequiredService<CaishenMngtDbContext>();
+//        db.Database.Migrate();
+//        Console.WriteLine("Database migrated successfully.");
+//    }
+//    catch (Exception ex)
+//    {
+//        Console.WriteLine("Error during database migration:");
+//        Console.WriteLine(ex.Message);
+//        // log detail
+//        Console.WriteLine(ex.StackTrace);
+//    }
+//}
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: true)
+    .AddEnvironmentVariables(); //
 
 app.Run();
 
