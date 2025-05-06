@@ -1,5 +1,5 @@
 ﻿using CaishenManagementAPI.Datacontext;
-using CaishenManagementAPI.Models;
+using CaishenManagementAPI.Entity;
 using CaishenManagementAPI.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

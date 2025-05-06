@@ -1,4 +1,4 @@
-﻿using CaishenManagementAPI.Models;
+﻿using CaishenManagementAPI.Entity;
 
 namespace CaishenManagementAPI.Repository
 {

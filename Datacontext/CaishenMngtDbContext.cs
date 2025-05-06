@@ -1,5 +1,6 @@
 ﻿using CaishenManagementAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using CaishenManagementAPI.Entity;
 
 namespace CaishenManagementAPI.Datacontext
 {
