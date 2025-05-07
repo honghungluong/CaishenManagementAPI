@@ -6,6 +6,15 @@ using System;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// dang ky Cors policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy
+            .AllowAnyOrigin() // allow all domain
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -19,6 +28,8 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -55,4 +66,3 @@ builder.Configuration
     .AddEnvironmentVariables(); //
 
 app.Run();
-
