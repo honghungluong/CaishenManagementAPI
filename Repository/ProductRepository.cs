@@ -16,5 +16,29 @@ namespace CaishenManagementAPI.Repository
         {
             return await _dbContext.Products.ToListAsync();
         }
+
+        public async Task<Product?> GetById(int id)
+        {
+            return await _dbContext.Products.FindAsync(id);
+        }
+
+        public async Task Add(Product product)
+        {
+            _dbContext.Products.Add(product);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Update(Product product)
+        {
+            _dbContext.Products.Update(product);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task Delete(Product product)
+        {
+            _dbContext.Products.Remove(product);
+            await _dbContext.SaveChangesAsync();
+        }
+
     }
 }
