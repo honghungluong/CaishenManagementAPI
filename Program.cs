@@ -9,11 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // dang ky Cors policy
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy => policy
-            .AllowAnyOrigin() // allow all domain
-            .AllowAnyMethod()
-            .AllowAnyHeader());
+    options.AddPolicy("AllowNetlify", policy =>
+    {
+        policy.WithOrigins("https://caishenjewelry.netlify.app/")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 builder.Services.AddControllers();
@@ -29,7 +30,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
+app.UseCors("AllowNetlify");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

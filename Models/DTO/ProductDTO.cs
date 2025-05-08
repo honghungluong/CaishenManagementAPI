@@ -1,4 +1,6 @@
-﻿namespace CaishenManagementAPI.Models.DTO
+﻿using CaishenManagementAPI.Enums;
+
+namespace CaishenManagementAPI.Models.DTO
 {
     public class ProductDTO
     {           
@@ -8,5 +10,6 @@
         public decimal Price { get; set; }
 
         public int StockQuantity { get; set; }
+        public ProductStatus Status { get; set; } = ProductStatus.Active; 
     }
 }

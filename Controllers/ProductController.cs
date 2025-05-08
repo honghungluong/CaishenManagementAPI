@@ -33,7 +33,8 @@ namespace CaishenManagementAPI.Controllers
                 Name = p.Name,
                 Description = p.Description,
                 Price = p.Price,
-                StockQuantity = p.StockQuantity
+                StockQuantity = p.StockQuantity,
+                Status = p.Status
             }).ToList();
             return Ok(productDTOs);
         }
@@ -50,7 +51,8 @@ namespace CaishenManagementAPI.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                StockQuantity = product.StockQuantity
+                StockQuantity = product.StockQuantity,
+                Status = product.Status
             };
 
             return Ok(dto);
@@ -65,7 +67,8 @@ namespace CaishenManagementAPI.Controllers
                 Name = dto.Name,
                 Description = dto.Description,
                 Price = dto.Price,
-                StockQuantity = dto.StockQuantity
+                StockQuantity = dto.StockQuantity,
+                Status = dto.Status
             };
 
             await productRepository.Add(product);
@@ -76,7 +79,8 @@ namespace CaishenManagementAPI.Controllers
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                StockQuantity = product.StockQuantity
+                StockQuantity = product.StockQuantity,
+                Status = product.Status
             };
 
             return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, resultDto);
@@ -93,6 +97,7 @@ namespace CaishenManagementAPI.Controllers
             existingProduct.Description = dto.Description;
             existingProduct.Price = dto.Price;
             existingProduct.StockQuantity = dto.StockQuantity;
+            existingProduct.Status = dto.Status;
 
             await productRepository.Update(existingProduct);
 
