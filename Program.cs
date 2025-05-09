@@ -11,7 +11,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowNetlify", policy =>
     {
-        policy.WithOrigins("https://caishenjewelry.netlify.app/")
+        policy.WithOrigins("https://caishenjewelry.netlify.app")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
