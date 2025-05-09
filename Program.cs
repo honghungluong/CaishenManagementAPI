@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 var allowedOrigins = new[]
 {
     "https://caishenjewelry.netlify.app",
+    "http://www.uptimerobot.com/",
     "http://104.131.107.63",
     "http://122.248.234.23",
     "http://128.140.106.114",
