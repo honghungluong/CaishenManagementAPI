@@ -32,9 +32,11 @@ namespace CaishenManagementAPI.Controllers
                 Id = p.Id,
                 Name = p.Name,
                 Description = p.Description,
-                Price = p.Price,
+                ImportPrice = p.ImportPrice,
+                SellPrice = p.SellPrice,
                 StockQuantity = p.StockQuantity,
-                Status = p.Status
+                Status = p.Status,
+                Type = p.Type // Added Type mapping
             }).ToList();
             return Ok(productDTOs);
         }
@@ -50,9 +52,11 @@ namespace CaishenManagementAPI.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price,
+                ImportPrice = product.ImportPrice,
+                SellPrice = product.SellPrice,
                 StockQuantity = product.StockQuantity,
-                Status = product.Status
+                Status = product.Status,
+                Type = product.Type // Added Type mapping
             };
 
             return Ok(dto);
@@ -66,9 +70,11 @@ namespace CaishenManagementAPI.Controllers
             {
                 Name = dto.Name,
                 Description = dto.Description,
-                Price = dto.Price,
+                ImportPrice = dto.ImportPrice,
+                SellPrice = dto.SellPrice,
                 StockQuantity = dto.StockQuantity,
-                Status = dto.Status
+                Status = dto.Status,
+                Type = dto.Type // Added Type mapping
             };
 
             await productRepository.Add(product);
@@ -78,9 +84,11 @@ namespace CaishenManagementAPI.Controllers
                 Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
-                Price = product.Price,
+                ImportPrice = product.ImportPrice,
+                SellPrice = product.SellPrice,
                 StockQuantity = product.StockQuantity,
-                Status = product.Status
+                Status = product.Status,
+                Type = product.Type // Added Type mapping
             };
 
             return CreatedAtAction(nameof(GetProductById), new { id = product.Id }, resultDto);
@@ -95,9 +103,11 @@ namespace CaishenManagementAPI.Controllers
 
             existingProduct.Name = dto.Name;
             existingProduct.Description = dto.Description;
-            existingProduct.Price = dto.Price;
+            existingProduct.ImportPrice = dto.ImportPrice;
+            existingProduct.SellPrice = dto.SellPrice;
             existingProduct.StockQuantity = dto.StockQuantity;
             existingProduct.Status = dto.Status;
+            existingProduct.Type = dto.Type; // Added Type mapping
 
             await productRepository.Update(existingProduct);
 
@@ -115,5 +125,20 @@ namespace CaishenManagementAPI.Controllers
             return NoContent();
         }
 
+        // DELETE: api/products
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAllProducts()
+        {
+            var products = await productRepository.GetAll();
+            if (products == null || !products.Any())
+                return NotFound();
+
+            foreach (var product in products)
+            {
+                await productRepository.Delete(product);
+            }
+
+            return NoContent();
+        }
     }
 }

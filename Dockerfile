@@ -27,4 +27,5 @@ RUN dotnet publish "./CaishenManagementAPI.csproj" -c $BUILD_CONFIGURATION -o /a
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV ConnectionStrings__DefaultConnection="User Id=postgres.usaghzwynxnjwfxreegr;Password=VGroTq434nn29vx3;Server=aws-0-ap-southeast-1.pooler.supabase.com;Port=5432;Database=postgres""
 ENTRYPOINT ["dotnet", "CaishenManagementAPI.dll"]
